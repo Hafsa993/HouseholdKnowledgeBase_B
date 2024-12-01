@@ -5,6 +5,7 @@ import 'package:household_knwoledge_app/screens/add_task_description_screen.dart
 import 'package:household_knwoledge_app/screens/task_description_screen.dart';
 import 'package:provider/provider.dart';
 import '../widgets/menu_drawer.dart';
+import './change_task_descriptor_screen.dart';
 
 class TasksScreen extends StatefulWidget {
   const TasksScreen({super.key});
@@ -34,6 +35,7 @@ class _TasksScreenState extends State<TasksScreen> {
   Widget build(BuildContext context) {
     // Listen to changes in the provider
     final allDescriptors = context.watch<TaskDescriptorProvider>().descriptors;
+    bool? isDeleted = false;
 
     // Apply filtering whenever allDescriptors, searchQuery, or dropdownvalue changes
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -119,25 +121,126 @@ class _TasksScreenState extends State<TasksScreen> {
             child: filteredDescriptors.isEmpty
                 ? Center(child: Text('No tasks found.'))
                 : ListView.builder(
+                    padding: EdgeInsets.all(16),
+                    //physics: const PageScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
                     itemCount: filteredDescriptors.length,
                     itemBuilder: (context, index) {
                       TaskDescriptor descriptor = filteredDescriptors[index];
-                      return Card(
-                        child: ListTile(
-                          leading: Icon(Icons.circle),
-                          trailing: Icon(descriptor.icon),
-                          iconColor: categoryColor(descriptor.category),
-                          title: Text(descriptor.title),
-                          subtitle: Text(descriptor.category, style: TextStyle(color: Colors.grey),),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    TaskDescriptionScreen(task: descriptor),
+                      return SizedBox(
+                        width: 350,
+                        child: Card(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ListTile(
+                                leading: Icon(descriptor.icon),
+                                
+                                iconColor: categoryColor(descriptor.category),
+                                title: Text(descriptor.title, style: TextStyle(fontSize: 20),),
+                                subtitle: Text(descriptor.category, style: TextStyle(color: categoryColor(descriptor.category)),),
+                                /*
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          TaskDescriptionScreen(task: descriptor),
+                                    ),
+                                  );
+                                },
+                                */
                               ),
-                            );
-                          },
+                            Divider(indent: 5, endIndent: 5, color: Colors.grey,),
+                            Expanded(
+                              child: ListView(
+                                padding: const EdgeInsets.all(10.0),
+                                children: [Text(descriptor.instructions, style: TextStyle(fontSize: 16),)],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Row(
+                                
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                children: [Wrap(
+                                    children: [
+                                      ElevatedButton(
+                                        style: ButtonStyle(
+                                          //shape: WidgetStateProperty.all(CircleBorder()),
+                                          //padding: WidgetStateProperty.all(EdgeInsets.all(-5)),
+                                          backgroundColor: WidgetStateProperty.all(Colors.blue),
+                                        ),
+                                        onPressed: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) => ChangeTaskDescriptorScreen(task: descriptor),
+                                                    ),
+                                                  ).then((val) {
+                                                    if (val != null) {
+                                                      setState(() {
+                                                        //temptask = val;
+                                                      });
+                                                    }
+                                                  });
+                                                }, 
+                                        
+                                        child: const Icon(Icons.edit, color: Colors.white, size: 20,
+                                        ),
+                                      ),
+                                      SizedBox(width: 10,),
+                                      ElevatedButton(
+                                        
+                                        style: ButtonStyle(
+                                          //shape: WidgetStateProperty.all(CircleBorder()),
+                                          //padding: WidgetStateProperty.all(EdgeInsets.all(-20)),
+                                          backgroundColor: WidgetStateProperty.all(Colors.red),
+                                        ),
+                                        onPressed: () async {
+                                                  isDeleted = await showDialog(
+                                                    context: context,
+                                                    builder: (context) {
+                                                      return AlertDialog(
+                                                        title: const Text("Are you sure you want to delete this instruction?"),
+                                                        content: const Text("This is a non-reversible action."),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () {
+                                                              Navigator.pop(context, true);
+                                                            },
+                                                            style: TextButton.styleFrom(
+                                                              foregroundColor: Colors.white,
+                                                              backgroundColor: Colors.red,
+                                                            ),
+                                                            child: const Text('Yes, really delete'),
+                                                          ),
+                                                          TextButton(
+                                                            onPressed: () => Navigator.pop(context, false),
+                                                            style: TextButton.styleFrom(
+                                                              foregroundColor: Colors.white,
+                                                              backgroundColor: Colors.grey,
+                                                            ),
+                                                            child: const Text("No, don't delete"),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                  
+                                                  if (isDeleted == true) {
+                                                    Provider.of<TaskDescriptorProvider>(context, listen: false).removeTaskDescriptor(descriptor);
+                                                    //Navigator.of(context).pop();
+                                                  }
+                                                }, 
+                                        child: const Icon(Icons.delete, color: Colors.white, size: 20,),
+                                      ),
+                                    ],
+                                  ),],),
+                            )
+                            ],
+                          ),
                         ),
                       );
                     },
@@ -201,3 +304,4 @@ Color getCategoryColor(String s) {
     return categoryColor(s);
   }
 }
+
