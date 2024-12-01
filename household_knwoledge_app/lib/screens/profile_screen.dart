@@ -72,7 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             TextButton(
               child: const Text("Logout"),
               onPressed: () {
-                // Implement your logout functionality here
+                // logout doesnt happen, just do nothing
                 Navigator.of(context).pop();
               },
             ),
