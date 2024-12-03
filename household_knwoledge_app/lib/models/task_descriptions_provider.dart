@@ -4,6 +4,55 @@ import 'package:household_knwoledge_app/models/task_descriptions_model.dart';
 class TaskDescriptorProvider with ChangeNotifier{
 
   List<TaskDescriptor> descriptors = [
+    
+    TaskDescriptor(
+      title: 'AC Unit control', 
+      instructions: 'Instructions on AC...', 
+      category: 'Maintenance',  
+      icon: Icons.ac_unit),
+    
+    TaskDescriptor(
+      title: 'Sarahs birthday wish', 
+      instructions: 'Sarahs gift...', 
+      category: 'Care',  
+      icon: Icons.child_friendly),
+
+    TaskDescriptor(
+      title: 'Basic shopping list', 
+      instructions: 'Shopping list...', 
+      category: 'Shopping',  
+      icon: Icons.child_friendly),
+
+    TaskDescriptor(
+      title: 'Window cleaning', 
+      instructions: 'Instructions on window cleaning...', 
+      category: 'Cleaning',  
+      icon: Icons.cottage),
+    
+    TaskDescriptor(
+      title: 'Looping', 
+      instructions: 'Instructions on window looping...', 
+      category: 'Other',  
+      icon: Icons.kebab_dining),
+
+    TaskDescriptor(
+      title: 'Piano practice', 
+      instructions: 'Instructions on window looping...', 
+      category: 'Care',  
+      icon: Icons.headphones),
+
+    TaskDescriptor(
+      title: 'Names of relatives', 
+      instructions: 'Names of relatives...', 
+      category: 'Other',  
+      icon: Icons.groups_2),
+
+    TaskDescriptor(
+      title: 'Writing an essay', 
+      instructions: 'Instructions on writing on essay...', 
+      category: 'Other',  
+      icon: Icons.keyboard),
+    
     TaskDescriptor(
       title: 'Laundry', 
       instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ', 
