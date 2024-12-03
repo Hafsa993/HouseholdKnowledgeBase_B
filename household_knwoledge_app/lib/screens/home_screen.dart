@@ -428,7 +428,7 @@ class HomeScreen extends StatelessWidget {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text("Please provide a reason for declining this task."),
+              const Text("Please provide a reason for declining this toDo."),
               const SizedBox(height: 8),
               TextField(
                 controller: reasoningController,
