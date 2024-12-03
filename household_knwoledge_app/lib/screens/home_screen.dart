@@ -349,7 +349,7 @@ class HomeScreen extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text("Are you sure you want to accept this task?"),
+          title: const Text("Are you sure you want to accept this toDo?"),
           content: const Text("This is a non-reversible action."),
           actions: [
             TextButton(
@@ -388,7 +388,7 @@ class HomeScreen extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text("Are you sure you want to decline this task?"),
+          title: const Text("Are you sure you want to decline this toDo?"),
           content: const Text("This is a non-reversible action."),
           actions: [
                 TextButton(

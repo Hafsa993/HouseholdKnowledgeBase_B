@@ -235,7 +235,7 @@ class MyTasksScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: completedTasks.isEmpty ? const Center(child: Text('No Tasks completed in the last 30 days')) :
+                child: completedTasks.isEmpty ? const Center(child: Text('No ToDos completed in the last 30 days')) :
                 ListView.builder(
                   itemCount: completedTasks.length,
                   itemBuilder: (context, index) {
