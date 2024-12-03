@@ -289,7 +289,7 @@ void showCompletionDialog(BuildContext context, Task task) {
           children: [
             // Title with bounce animation
              Text(
-              "Task Completed!",
+              "ToDo Completed!",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 24,
