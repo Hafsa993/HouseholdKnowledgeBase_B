@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:household_knwoledge_app/models/task_descriptions_model.dart';
 import 'package:household_knwoledge_app/models/task_descriptions_provider.dart';
 import 'package:household_knwoledge_app/screens/add_task_description_screen.dart';
-import 'package:household_knwoledge_app/screens/task_description_screen.dart';
 import 'package:provider/provider.dart';
 import '../widgets/menu_drawer.dart';
 import './change_task_descriptor_screen.dart';
@@ -119,7 +118,7 @@ class _TasksScreenState extends State<TasksScreen> {
           // Task List
           Expanded(
             child: filteredDescriptors.isEmpty
-                ? Center(child: Text('No tasks found.'))
+                ? Center(child: Text('No instructions found.'))
                 : ListView.builder(
                     padding: EdgeInsets.all(16),
                     //physics: const PageScrollPhysics(),
@@ -139,17 +138,6 @@ class _TasksScreenState extends State<TasksScreen> {
                                 iconColor: categoryColor(descriptor.category),
                                 title: Text(descriptor.title, style: TextStyle(fontSize: 20),),
                                 subtitle: Text(descriptor.category, style: TextStyle(color: categoryColor(descriptor.category)),),
-                                /*
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          TaskDescriptionScreen(task: descriptor),
-                                    ),
-                                  );
-                                },
-                                */
                               ),
                             Divider(indent: 5, endIndent: 5, color: Colors.grey,),
                             Expanded(
