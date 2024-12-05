@@ -53,20 +53,18 @@ class TaskProvider extends ChangeNotifier {
     Task(
       title: 'Do Laundry',
       deadline: DateTime.now().add(const Duration(days: 2)),
-      category: 'Household',
+      category: 'Cleaning',
       difficulty: 'Easy',
       description: 'Wash, dry, and fold clothes.',
       rewardPoints: 15,
       assignedTo: 'Alex',
-    ),
+      ),
     // Add more tasks
   ];
   
 
   List<Task> pendingTasks(String username) {
-    // Return the most urgent, unaccepted Tasks assgned to me
-
-
+  //tasks assigned to username, but not yet accepted
     List<Task> unsortedList = toDoList.where((task) => !task.isAccepted && !task.isDeclined && task.assignedTo.compareTo(username) == 0).toList();      
     unsortedList.sort((a, b) => a.deadline.compareTo(b.deadline));
     return unsortedList;

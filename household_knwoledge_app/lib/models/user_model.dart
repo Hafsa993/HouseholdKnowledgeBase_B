@@ -11,7 +11,7 @@ class User {
     this.points = 0,
     this.role = 'Member', 
     this.preferences = const [], 
-    this.contributions = const {},
+    this.contributions =  const {"Cleaning": 0,"Gardening": 0, "Cooking": 0, "Shopping": 0, "Planning" : 0,"Care" : 0,"Maintenance" : 0,"Other" : 0},
     this.profilepath = 'lib/assets/f.jpeg',
   });
 
