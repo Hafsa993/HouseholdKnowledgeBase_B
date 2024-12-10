@@ -1,5 +1,5 @@
 
 # HouseholdKnowledgeBase
 HCI course project HS2024
-High Fidelity Prototype,
+B Pototype of High Fidelity Prototype,
 Topic: Mental Load, Household Knowledgebase
